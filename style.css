@@ -1,0 +1,344 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    user-select: none;
+    position: relative;
+}
+
+.side {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.li {
+    text-decoration: none;
+    list-style: none;
+    margin: .5em;
+    padding: .4em;
+    display: flex;
+    justify-content: stretch;
+}
+
+.li-pos {
+    flex-grow: 0;
+    align-self: center;
+    font-size: 2em;
+    width: 1em;
+    text-align: right;
+}
+
+.li-content {
+    border-left: 0.1em solid white;
+    margin-left: 1em;
+    padding-left: 1em;
+    flex: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.element {
+    background-color: white;
+    color: black;
+    padding: .5em;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: .5em;
+    border-radius: .5em;
+    font-weight: bold;
+}
+
+.element:last-child {
+    margin-bottom: 0;
+}
+
+.side input {
+    flex-grow: 0;
+    margin-bottom: 1em;
+}
+
+.element-name {
+    flex: 1;
+}
+
+.delete-btn {
+    cursor: pointer;
+    color: white;
+    flex-grow: 0;
+    padding: .1em;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    font-size: 1.2em;
+}
+
+.delete-btn::after {
+    content: "x";
+    transform: translateX(70%) translateY(-15%);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+li.draggedover * {
+    pointer-events: none;
+}
+
+.element.tmp {
+    padding: 0;
+    opacity: .6;
+    background-color: gainsboro;
+}
+
+.switch-btn {
+    margin-bottom: -.5em;
+
+    border: none;
+    background-color: transparent;
+    font-size: 1.2em;
+    z-index: 1;
+    color: white;
+    padding: 0 .5em;
+
+    position: absolute;
+    right: .2em;
+    top: .2em;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    text-decoration: underline;
+}
+
+.side {
+    margin: .5em;
+    align-items: center;
+}
+
+.pane-container {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.pane-container.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.pane-container.flipped .back {
+    transform: none;
+}
+
+.pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+
+    padding: 1.5em;
+    box-sizing: border-box;
+    border-radius: .5em;
+
+    display: flex;
+    flex-direction: column;
+    color: white;
+    
+    font-size: 1.2em;
+
+    transition: transform 200ms ease-in-out;
+}
+
+.pane-container .front {
+    background-color: #CE5A67;
+    z-index: 1;
+}
+
+.pane-container .back {
+    transform: rotateY(180deg);
+    background-color: #5a68ce;
+    z-index: -1;
+}
+
+.option-list {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.option-list-input {
+    background: transparent;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    border-bottom: 2px solid white;
+}
+
+.option-list-input::placeholder {
+    color: white;
+    opacity: .8;
+}
+
+.option-list-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.option-list ul {
+    flex: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.option-list li *:first-child {
+    flex: auto;
+}
+
+.option-list li {
+    text-decoration: none;
+    list-style: none;
+    margin: .5em;
+    padding: .4em 0;
+    display: flex;
+    justify-content: stretch;
+    user-select: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.pref-editor-options {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-weight: bold;
+}
+
+.pref-editor-wrapper {
+    flex: auto;
+    overflow: hidden;
+}
+
+.pref-editor-options li {
+    text-decoration: none;
+    list-style: none;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.pref-editor-options li.active {
+    color: black;
+}
+
+.preference-editor {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.preference-ul {
+    padding: 0;
+    padding: 1em 0;
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+    overflow-y: auto;
+}
+
+.element.tmp {
+    pointer-events: none;
+}
+
+#match-btn-wrapper {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    bottom: 1em;
+    left: 0;
+    align-items: center;
+    pointer-events: none;
+}
+
+#match-btn {
+    font-size: 3em;
+    color: black;
+    background-color: white;
+    border: .1em solid black;
+    border-radius: .3em;
+    padding: .1em .5em;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+#match-btn:disabled {
+    opacity: .5;
+    cursor: inherit;
+}
+
+#modal-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal {
+    display: none;
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    z-index: 10;
+
+    flex-direction: column;
+    font-size: 1.5em;
+
+    align-items: center;
+
+    padding: 1em;
+    position: relative;
+}
+
+#modal.active {
+    display: flex;
+}
+
+#modal-close-btn {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+}
+
+#results-ul {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+#results-ul li {
+    margin-bottom: 1em;
+}
